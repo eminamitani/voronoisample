@@ -5,6 +5,7 @@
 // Date     : August 30th 2011
 
 #include "voro++.hh""
+#include <random>
 using namespace voro;
 
 // Set up constants for the container geometry
