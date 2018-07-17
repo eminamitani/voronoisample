@@ -8,7 +8,7 @@
 include ./config.mk
 
 # List of executables
-EXECUTABLES=test  random_test
+EXECUTABLES=test  random_test cauchy
 
 # Makefile rules
 
@@ -18,6 +18,8 @@ test: random_points_periodic.cc
 random_test: random.cc 
 	g++ -std=c++11 -o random_test random.cc
 
+cauchy: random_cauchy.cc
+	g++ -std=c++11 -o cauchy random_cauchy.cc
 clean:
 	rm -f $(EXECUTABLES)
 

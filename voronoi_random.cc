@@ -6,7 +6,9 @@
 
 #include "voro++.hh"
 #include <random>
+#include <fstream>
 using namespace voro;
+
 
 // Set up constants for the container geometry
 const double x_min=-1,x_max=1;
@@ -22,6 +24,44 @@ const int particles=20;
 
 // This function returns a random double between 0 and 1
 double rnd() {return double(rand())/RAND_MAX;}
+
+double rndCauchy(double x, double y, double z){
+    std::random_device rnd;
+	std::mt19937 mt(rnd());
+	std::cauchy_distribution<double> rndx(x, 0.5);
+	std::cauchy_distribution<double> rndy(y, 0.5);
+	std::cauchy_distribution<double> rndz(z, 0.5);
+
+	bool flagx, flagy,flagz;
+	flagx=false;
+	flagy=false;
+	flagz=false;
+
+
+
+	do{
+		double rx=rndx(mt);
+		if (x_min<=rx && rx<= x_max){
+			flagx=true;
+		}
+	}while(flagx==false);
+
+	do{
+		double ry=rndy(mt);
+		if (y_min<=ry && ry<= y_max){
+			flagy=true;
+		}
+	}while(flagy==false);
+
+	do{
+		double rz=rndz(mt);
+		if (z_min<=rz && rz<= z_max){
+			flagz=true;
+		}
+	}while(flagz==false);
+
+
+}
 
 int main() {
 	int i;
