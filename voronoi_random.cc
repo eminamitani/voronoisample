@@ -11,9 +11,9 @@ using namespace voro;
 
 
 // Set up constants for the container geometry
-const double x_min=-1,x_max=1;
-const double y_min=-1,y_max=1;
-const double z_min=-1,z_max=1;
+const double x_min=0,x_max=1;
+const double y_min=0,y_max=1;
+const double z_min=0,z_max=1;
 const double cvol=(x_max-x_min)*(y_max-y_min)*(x_max-x_min);
 
 // Set up the number of blocks that the container is divided into
@@ -25,42 +25,25 @@ const int particles=20;
 // This function returns a random double between 0 and 1
 double rnd() {return double(rand())/RAND_MAX;}
 
-double rndCauchy(double x, double y, double z){
+double rndCauchy(double x, double min, double max, double width){
     std::random_device rnd;
 	std::mt19937 mt(rnd());
-	std::cauchy_distribution<double> rndx(x, 0.5);
-	std::cauchy_distribution<double> rndy(y, 0.5);
-	std::cauchy_distribution<double> rndz(z, 0.5);
+	std::cauchy_distribution<double> rndx(x, width);
 
-	bool flagx, flagy,flagz;
+	bool flagx;
 	flagx=false;
-	flagy=false;
-	flagz=false;
 
-
+	double rx=-100000.0;
 
 	do{
-		double rx=rndx(mt);
-		if (x_min<=rx && rx<= x_max){
+		rx=rndx(mt);
+		if (min<=rx && rx<= max){
 			flagx=true;
 		}
 	}while(flagx==false);
 
-	do{
-		double ry=rndy(mt);
-		if (y_min<=ry && ry<= y_max){
-			flagy=true;
-		}
-	}while(flagy==false);
 
-	do{
-		double rz=rndz(mt);
-		if (z_min<=rz && rz<= z_max){
-			flagz=true;
-		}
-	}while(flagz==false);
-
-
+	return rx;
 }
 
 int main() {
@@ -75,9 +58,9 @@ int main() {
 
 	// Randomly add particles into the container
 	for(i=0;i<particles;i++) {
-		x=x_min+rnd()*(x_max-x_min);
-		y=y_min+rnd()*(y_max-y_min);
-		z=z_min+rnd()*(z_max-z_min);
+		x=rndCauchy(0.0,x_min,x_max,0.5);
+		y=rndCauchy(0.0,y_min,y_max,0.5);
+		z=rndCauchy(0.0,z_min,z_max,0.5);
 		con.put(i,x,y,z);
 	}
 

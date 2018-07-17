@@ -3,7 +3,7 @@
 #include <fstream>
 
 
-double rndCauchy(double x){
+double rndCauchy(double x, double min, double max){
     std::random_device rnd;
 	std::mt19937 mt(rnd());
 	std::cauchy_distribution<double> rndx(x, 0.5);
@@ -11,12 +11,12 @@ double rndCauchy(double x){
 	bool flagx;
 	flagx=false;
 
-	double rx=-100.0;
+	double rx=-10000.0;
 
 	do{
 		rx=rndx(mt);
 		std::cout << rx << std::endl;
-		if (0.0<=rx && rx<= 1.0){
+		if (min<=rx && rx<= max){
 			flagx=true;
 		}
 	}while(flagx==false);
@@ -26,7 +26,7 @@ double rndCauchy(double x){
 }
 int main()
 {
-	double test=rndCauchy(0.0);
+	double test=rndCauchy(0.0, 0.0, 1.0);
 	std::cout << test << std::endl;
 
 }
