@@ -6,7 +6,7 @@
 double rndCauchy(double x, double min, double max){
     std::random_device rnd;
 	std::mt19937 mt(rnd());
-	std::cauchy_distribution<double> rndx(x, 0.5);
+	std::cauchy_distribution<double> rndx(x, 0.1);
 
 	bool flagx;
 	flagx=false;
@@ -26,7 +26,13 @@ double rndCauchy(double x, double min, double max){
 }
 int main()
 {
-	double test=rndCauchy(0.0, 0.0, 1.0);
-	std::cout << test << std::endl;
+	std::ofstream ofs("cauchy.dat");
+	double test=-10000000;
+
+	for(int i=0;i<10000;++i){
+	  test=rndCauchy(0.0, 0.0, 1.0);
+	  std::cout << test << std::endl;
+	  ofs << test << "\n";
+	}
 
 }
