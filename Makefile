@@ -8,21 +8,15 @@
 include ./config.mk
 
 # List of executables
-EXECUTABLES=test  random_test cauchy test_cauchy
+
+EXECUTABLE=random_cauchy_3D
+
+all:$(EXECUTABLE)
 
 # Makefile rules
 
-test: random_points_periodic.cc
-	$(CXX) $(CFLAGS) $(E_INC) $(E_LIB) -o test random_points_periodic.cc -lvoro++
-
-random_test: random.cc 
-	g++ -std=c++11 -o random_test random.cc
-
-cauchy: random_cauchy.cc
-	g++ -std=c++11 -o cauchy random_cauchy.cc
-
-test_cauchy: voronoi_random.cc
-	$(CXX) $(CFLAGS) $(E_INC) $(E_LIB) -o test_cauchy voronoi_random.cc -lvoro++
+random_cauchy_3D: voronoi_random.cc
+	$(CXX) $(CFLAGS) $(E_INC) $(E_LIB) -o $(EXECUTABLE) voronoi_random.cc -lvoro++
 clean:
 	rm -f $(EXECUTABLES)
 
