@@ -17,3 +17,8 @@ The 3d plot of sampling point can be visualized by gnuplot using the following c
 ```
 splot 'random_points_p.gnu' u 2:3:4 with points
 ```
+Volo++ use std+11 thus, in some Linux system, you may need to activate devtool-set2 by 
+
+```
+scl enable devtoolset-2 bash
+```
