@@ -22,9 +22,9 @@ const double cwidth=0.05;
 const int n_x=40,n_y=40,n_z=40;
 
 // Set the number of particles using cauchy random distribution
-const int cparticles=10000;
+const int cparticles=30000;
 // number of particles purely gnerated by random agorithm
-const int addparticles=10000;
+const int addparticles=20000;
 
 // This function returns a random double between 0 and 1
 double rnd() {return double(rand())/RAND_MAX;}
